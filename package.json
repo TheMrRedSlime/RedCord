@@ -1,6 +1,6 @@
 {
   "name": "redcord",
-  "version": "0.0.0",
+  "version": "1.0",
   "description": "TheMrRedSlime's Custom Discord Client!. Made to inject CSS.",
   "main": "index.js",
   "scripts": {
