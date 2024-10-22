@@ -1,4 +1,6 @@
 const { app, BrowserWindow, globalShortcut, ipcMain } = require('electron');
+const path = require('path');
+
 
 let mainWindow;
 let cssContent = '';
@@ -7,12 +9,18 @@ app.on('ready', () => {
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      contextIsolation: true,
+      nodeIntegration: true,
+    }
   });
 
   // Load Discord initially
   mainWindow.loadURL('https://discord.com/app');
 
-  // Register the global shortcut
+  mainWindow.webContents.executeJavaScript('document.title = "RedCord"')
+  mainWindow.webContents.executeJavaScript('if(redcord.storage.get().css != null || redcord.storage.get().css != "") { const styleElement = document.createElement("style"); styleElement.textContent = redcord.storage.get().css; document.head.appendChild(styleElement); }')
   globalShortcut.register('CommandOrControl+Alt+C', () => {
     createCSSDialog();
   });
@@ -58,10 +66,16 @@ function createCSSDialog() {
     injectButton.addEventListener("click", () => {
       const cssCode = cssInput.value;
       if (cssCode.trim() !== "") {
+        const existingCSS = document.querySelector(".redcss");
+        if (document.querySelector(".redcss")) {
+          document.body.removeChild(existingCSS);
+        }
         const styleElement = document.createElement("style");
+        container.className = "redcss";
         styleElement.textContent = cssCode;
         document.head.appendChild(styleElement);
         cssInput.value = "";
+        redcord.storage.set(cssCode);
       }
     });
   

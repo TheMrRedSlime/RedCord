@@ -1,7 +1,7 @@
 {
   "name": "redcord",
   "version": "0.0.0",
-  "description": "TheMrRedSlime's Custom Discord Client!. Made to inject CSS",
+  "description": "TheMrRedSlime's Custom Discord Client!. Made to inject CSS.",
   "main": "index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -9,10 +9,11 @@
     "package": "electron-forge package",
     "make": "electron-forge make"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "TheMrRedSlime",
+  "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "fs": "^0.0.1-security"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.4.2",
