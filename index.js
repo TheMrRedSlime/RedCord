@@ -58,7 +58,7 @@ function createCSSDialog() {
     // Create a button to inject CSS
     const injectButton = document.createElement("button");
     injectButton.textContent = "Inject CSS";
-    injectButton.style.backgroundColor = "blue";
+    injectButton.style.backgroundColor = "red";
     injectButton.style.color = "white";
     injectButton.style.border = "none";
     injectButton.style.cursor = "pointer";
